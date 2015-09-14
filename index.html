@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="jquery-ui.min.css">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script src="jquery.animate-shadow.js"></script>
+  <style type="text/css">
+  .row{
+    display: inline;
+    margin-bottom: 0px;
+    width:629px;
+    margin-left:0px;
+    margin-right: 0px;
+    padding: 0px; 
+
+  }
+  .col{
+    width: inherit;
+    padding: 0px; 
+  }
+  .ui-tabs{
+    padding: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .row .col{
+padding: 0px; 
+  }
+  .tabs{height: 50px;
+  }
+  .sidemenu{
+    display:inline;
+    position: absolute;
+  }
+  .sidemenutab{
+    box-shadow: 0 0 15px 13px rgba(100,100,200,0);
+    position: absolute;
+    color: #ee6e73;
+    width: 300px;
+    background-color: transparent;
+    text-align: center;
+    height: 25px;
+    padding: 0px 0px;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-top: 0px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    display:inline;
+    opacity: 0.4;
+  }
+  
+  .active2{
+    
+    box-shadow: 3px 3px 5px gray;
+    opacity: 1;
+    background-color: #ee6e73;
+    left: -15px;
+    width: 315px;
+    border-color: #ee6e73;
+    color: white;
+
+  }
+  #player{
+    display:inline;
+    float:left;
+
+  }
+
+  </style>
+  </head>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+
+  <div class="row" >
+    <div class="col ">
+      <ul class="tabs" style="">
+        <li class="tab col "><a class="active" href="#test1" segs="1">Capítulo 1 </a></li>
+        <li class="tab col "><a href="#test2" segs="11">Capítulo 2</a></li>
+        <li class="tab col "><a href="#test3" segs="16">Capítulo 3</a></li>
+        <li class="tab col "><a href="#test4" segs="17">Capítulo 4</a></li>
+      </ul>
+    </div>
+  </div>
+    <div id="player" ></div>
+    <div class="sidemenu">
+      <div id="sm1" class="sidemenutab active2" realcolor="#ee6e73" segs="1" style="box-shadow:2 2 1px 1px #999">Capítulo 1</div><br>
+      <div id="sm2" class="sidemenutab" realcolor="#ee6e73" segs="10">Capítulo 2</div><br>
+      <div id="sm3" class="sidemenutab" realcolor="#ee6e73" segs="21">Capítulo 3</div><br>
+      <div id="sm4" class="sidemenutab" realcolor="#ee6e73" segs="31">Capítulo 4</div><br>
+      <div id="sm5" class="sidemenutab" realcolor="#ee6e73" segs="41">Capítulo 5</div><br>
+      <div id="sm6" class="sidemenutab" realcolor="#ee6e73" segs="51">Capítulo 6</div><br>
+      <div id="sm7" class="sidemenutab" realcolor="#ee6e73" segs="61">Capítulo 7</div><br>
+      <div id="sm8" class="sidemenutab" realcolor="#ee6e73" segs="71">Capítulo 8</div><br>
+      <div id="sm9" class="sidemenutab" realcolor="#ee6e73" segs="81">Capítulo 8</div><br>
+      <div id="sm10" class="sidemenutab" realcolor="#ee6e73" segs="91">Capítulo 9</div><br>
+      
+      <!--<div id="sm11" class="sidemenutab" realcolor="#ee6e73" segs="41">Capítulo 5</div><br>
+      <div id="sm12" class="sidemenutab" realcolor="#ee6e73" segs="51">Capítulo 6</div><br>
+      <div id="sm13" class="sidemenutab" realcolor="#ee6e73" segs="61">Capítulo 7</div><br>
+      <div id="sm14" class="sidemenutab" realcolor="#ee6e73" segs="71">Capítulo 8</div><br>
+      <div id="sm15" class="sidemenutab" realcolor="#ee6e73" segs="81">Capítulo 8</div><br>
+      <div id="sm16" class="sidemenutab" realcolor="#ee6e73" segs="91">Capítulo 9</div><br>
+      <div id="sm17" class="sidemenutab" realcolor="#ee6e73" segs="71">Capítulo 8</div><br>
+      <div id="sm18" class="sidemenutab" realcolor="#ee6e73" segs="81">Capítulo 8</div><br>-->
+    </div>
+    <script>
+       $(document).ready(function(){
+        $('.sidemenutab').each( function( index, item) {
+             var parent = $(item).parent();
+             var $this = $(item);
+             parent.css('position', 'relative');
+             $this.css('position', 'absolute').css('top', Math.round((parent.height() - $this.outerHeight()) / 2) + 'px');
+        }); 
+          $('ul.tabs').tabs();
+          //$('.sidemenutab').css({'margin-top':(390-$('.sidemenutab').length*22)/2});
+          var he = 390 / $('.sidemenutab').length;
+          
+          var pt = (he-parseInt($('.sidemenutab').css('font-size'))-8)/2;
+          for (var i = 0; i < $('.sidemenutab').length; i++) {
+            num = i*he-2;
+            $('#sm'+(i+1)).css({top:num+"px",height:he,"padding-top":pt+"px",})
+          };
+          $('.sidemenutab').on('mouseover',function(){
+              if(!$(this).hasClass('active2')){
+                $(this).stop().animate({backgroundColor:$(this).attr('realcolor'),boxShadow : "2 2 1px 1px #999",color:"white",width:310,borderColor:"rgba(0,0,0,0)",left:"-10px",opacity:1,cursor:"pointer"}, 200);
+              }
+            });
+            $('.sidemenutab').on('mouseout',function(){
+                if(!$(this).hasClass('active2')){
+                    color = $(this).attr('realcolor');
+                    $(this).stop().animate({borderColor:color,backgroundColor:"white",width:300,color:$(this).attr('realcolor'),"border-color":"white",boxShadow : "0 0 15px 13px rgba(100,100,200,0)",left:"0px",opacity:0.4}, 200);
+                }
+                
+            });
+            $('.sidemenutab').click(function(){
+                segs = $(this).attr('segs');
+                seekTo(segs);
+                color = $(this).attr('realcolor');
+                $('.active2').stop().animate({borderColor:color,backgroundColor:"white",width:300,color:color,boxShadow : "0 0 15px 13px rgba(100,100,200,0)","border-color":"white",left:"0px",opacity:0.4},200);
+                $('.active2').removeClass('active2');
+                $(this).addClass('active2');
+                $(this).stop().animate({backgroundColor:$(this).attr('realcolor'),color:"white",width:315,borderColor:"rgba(0,0,0,0)",left:"-15px",opacity:1,cursor:"pointer"}, 200);
+            });
+            $('a').click(function(e){
+              e.preventDefault();
+              segs = $(this).attr('segs');
+              seekTo(segs);
+            });
+        });
+              
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '629',
+          playerVars: { 
+                 'autoplay': 0,
+                 //'controls': 1, 
+                 'rel' : 0
+          },
+          videoId: 'M7lc1UVf-VE',
+          autohide:1,
+          controls:0,
+          events: {
+            'onReady': onPlayerReady,
+            //'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      var times = [];
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        //event.target.playVideo();
+        $('.sidemenutab').each( function( index, item) {
+             var $thinn = $(item);
+             times.push($thinn.attr('segs'));
+        }); 
+        console.log(times);
+        updateBar();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      function playVideo(){
+        player.playVideo();
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+      function seekTo(seconds){
+        player.seekTo(seconds,true);
+      }
+      function changeTo(num){
+        color = $('#sm'+(num+1)).attr('realcolor');
+        $('.active2').stop().animate({borderColor:color,backgroundColor:"white",width:300,color:color,boxShadow : "0 0 15px 13px rgba(100,100,200,0)","border-color":"white",left:"0px",opacity:0.4},200);
+        $('.active2').removeClass('active2');
+        $('#sm'+(num+1)).addClass('active2');
+        $('#sm'+(num+1)).stop().animate({backgroundColor:$('#sm'+(num+1)).attr('realcolor'),boxShadow : "2 2 1px 1px #999",color:"white",width:315,borderColor:"rgba(0,0,0,0)",left:"-15px",opacity:1,cursor:"pointer"}, 200);
+      }
+      
+      function updateBar () {
+          if (YT.PlayerState.PLAYING) {
+              t = player.getCurrentTime();
+              if(t<times[1]){
+                changeTo(0)
+              }
+              for (var i = times.length - 1; i >= 0; i--) {
+                if(t>times[i]-1){
+                  changeTo(i)
+                  break;
+                }
+              };
+              setTimeout(updateBar,800);
+          }
+      }
+
+    </script>
+  </body>
+</html>
